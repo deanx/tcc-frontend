@@ -3,7 +3,7 @@ import React from 'react';
 import {
   ChakraProvider,
   Box,
-  Grid,
+  Container,
   theme,
 
   Step,
@@ -27,11 +27,11 @@ import PerguntasFinais from './pages/PerguntasFinais';
 import Agradecimento from './pages/Agradecimento';
 
 const steps = [
-  { title: 'Perguntas iniciais 1', description: '' },
-  { title: 'Perguntas iniciais 2', description: '' },
+  { title: 'Demográficas', description: '' },
+  { title: 'Redes Sociais', description: '' },
   { title: 'Vídeo', description: '' },
-  { title: 'Perguntas finais', description: '' },
-  { title: 'Agradecimento', description: '' },
+  { title: 'Questões finais', description: '' },
+  { title: 'Obrigado', description: '' },
 ]
 
 function App() {
@@ -42,9 +42,9 @@ function App() {
 
   return (
     <ChakraProvider theme={theme}>
-      <Box textAlign="center" fontSize="xl">
-        <Grid minH="100vh" p={3}>
-        <Stepper index={activeStep}>
+      <Box textAlign="center" fontSize="1em">
+        <Container minW='100%'>
+        <Stepper index={activeStep} size='sm' orientation='vertical'>
       {steps.map((step, index) => (
         <Step key={index}>
           <StepIndicator>
@@ -69,7 +69,7 @@ function App() {
           { activeStep == 3 && <Video setActiveStep={setActiveStep} /> }
           { activeStep == 4 && <PerguntasFinais setActiveStep={setActiveStep} />}
           { activeStep == 5 && <Agradecimento setActiveStep={setActiveStep} /> }
-        </Grid>
+        </Container>
       </Box>
     </ChakraProvider>
   );

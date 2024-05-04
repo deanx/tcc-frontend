@@ -14,7 +14,7 @@
 async function recordWebcam() {
   return await navigator.mediaDevices.getUserMedia({
     audio: false,
-    video: { width: 640, height: 480, frameRate: { ideal: 5, max: 5 }}
+    video: { width: 640, height: 480, frameRate: { ideal: 5, max: 5 }, playsinline: ''}
   })
 }
 

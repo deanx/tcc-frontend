@@ -60,7 +60,6 @@ function PerguntasIniciaisI(props) {
     const [naturalidade, setNaturalidade] = React.useState("")
     return (
         <>
-        <Text fontWeight={"bold"}>Perguntas Demográficas Básicas</Text>
             <Grid
     templateAreas={`"p1 p2"
                     "p3 p4"
@@ -71,20 +70,21 @@ function PerguntasIniciaisI(props) {
     gap='1'
     color='blackAlpha.700'
     fontWeight='bold'
+    fontSize="0.7em"
     >
-    <GridItem pl='2' bg='#E5E5E5' area={'p1'}>
-        <Center paddingTop={"10px"}>
+    <GridItem pl='1' bg='#E5E5E5' area={'p1'}>
+        
             <HStack verticalAlign={"center"}>
-                <Box>Email:</Box>
-                <Box><input type="email" display={"flex"} w={300} value={email} onChange={(event) => setEmail(event.target.value)}/></Box>
+                <Box w={"40%"}>Email:</Box>
+                <Box><input type="email" w={"20%"} value={email} onChange={(event) => setEmail(event.target.value)}/></Box>
             </HStack>
-        </Center>
+        
     </GridItem>
-    <GridItem pl='2' bg='#E5E5E5' area={'p2'}>
-    <Center>
+    <GridItem pl='1' bg='#E5E5E5' area={'p2'}>
+    
             <HStack>
-                <Box>Ano de nascimento: </Box>
-                <Box><Select placeholder='Selecione' w={300} display={"flex"} value={anonascto} onChange={(event) => setAnoNascto(event.target.options[event.target.selectedIndex].value)}>
+                <Box>Nascimento:</Box>
+                <Box><Select placeholder='Selecione' w={"10em"} h={"2em"} display={"flex"} value={anonascto} onChange={(event) => setAnoNascto(event.target.options[event.target.selectedIndex].value)}>
                     <option value='1900'>1900</option>
                     <option value='1901'>1901</option>
                     <option value='1902'>1902</option>
@@ -188,7 +188,6 @@ function PerguntasIniciaisI(props) {
                     <option value='2000'>2000</option>
                 </Select></Box>
             </HStack>
-        </Center>
     </GridItem>
     <GridItem pl='2' bg='#E5E5E5' area={'p3'}>
         <Center>

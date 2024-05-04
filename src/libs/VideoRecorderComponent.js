@@ -61,8 +61,6 @@ async function recordWebcam() {
     audio: false,
     video: { width: 640, height: 360, frameRate: { ideal: 3, max: 3 }, facingMode: "user"}
   })
-    document.getElementById("video").srcObject = stream;
-    document.getElementById("video").play();
   return stream;
 }
 
