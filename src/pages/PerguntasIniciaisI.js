@@ -5,16 +5,31 @@ import axios from 'axios';
 
 import {
     Box,
-    Select,
-     VStack, Text, Card, CardBody, CardHeader, CardFooter, Heading
+    Select, Input, Button,
+     VStack, Text, Card, CardBody, CardHeader, CardFooter, Heading,
+     Checkbox
   } from '@chakra-ui/react';
 
 function PerguntasIniciaisI(props) {
-    const save = () => {
+    const [showTermoConsentimento, setShowTermoConsentimento] = React.useState(true);
+    const [email, setEmail] = React.useState("");
+    const [anonascto, setAnoNascto] = React.useState("");
+    const [genero, setGenero] = React.useState("");
+    const [rendaFamiliar, setRendaFamiliar] = React.useState("");
+    const [escolaridade, setEscolaridade] = React.useState("");
+    const [naturalidade, setNaturalidade] = React.useState("")
+
+    const save = (target) => {
+        target.style.display='none';
+        document.getElementById("aguarde").style.display='block';
+
         window.email = email;
+        if([email, anonascto, genero, rendaFamiliar, escolaridade, naturalidade].some(el => el === "")) { 
+            target.style.display='block'
+            document.getElementById("aguarde").style.display='none';
+            return alert("Preencha todos os campos");            
+        }
         
-        //if([email, anonascto, genero, rendaFamiliar, escolaridade, naturalidade].some(el => el == "")) return alert("Preencha todos os campos");
-        props.setActiveStep(2);
         let data = JSON.stringify({
             "id": 1,
             "email": email,
@@ -37,30 +52,21 @@ function PerguntasIniciaisI(props) {
           
           axios.request(config)
           .then((response) => {
-            props.setActiveStep(2)
+            props.setActiveStep(2);
+            start();
+            stop({email:email,step:1});
           })
           .catch((error) => {
-            console.log(error);
+            alert("Erro! Revise os dados e tente novamente!")
+            target.style.display='block'
+            document.getElementById("aguarde").style.display='none';
           });
-
-        stop({
-                email:email,
-                step:1
-            });
-
-        start();
     }
-    const [email, setEmail] = React.useState("");
-    const [anonascto, setAnoNascto] = React.useState("");
-    const [genero, setGenero] = React.useState("");
-    const [rendaFamiliar, setRendaFamiliar] = React.useState("");
-    const [escolaridade, setEscolaridade] = React.useState("");
-    const [naturalidade, setNaturalidade] = React.useState("")
+
     return (
         <>
-        <VStack alignItems={"left"} textAlign="left">
             
-            <Card>
+        {showTermoConsentimento  && <Card>
                 <CardHeader>
                     <Heading size='sm'>TERMO DE CONSENTIMENTO LIVRE E ESCLARECIDO</Heading>
                 </CardHeader>
@@ -68,19 +74,24 @@ function PerguntasIniciaisI(props) {
                     <Text pt='2' fontSize='sm'>
 Você está convidado (a) a participar de uma pesquisa academica sobre redes sociais que faz parte de um projeto de finalizac’ão de curso de MBA em Neurociencia e Marketing pela PUC Rio Grande do Sul, em que se inclue o uso de analise neurocientifica que faz aferiçoes durante a pesquisa, portanto é necessário que habilite sua camera. 
 Importante
-Todas as informações coletadas durante a sua participação serão analisadas em conjunto com as informações dos outros voluntários. Caso você aceite participar da pesquisa e assine este termo, você estará ciente que todos os seus dados pessoais e aferiçoes coletadas pela camera serão processados de acordo com a Lei 13.709/18 (LGPD), e serão utilizados apenas para os propósitos desta pesquisa e não serão compartilhados. 
+Todas as informações coletadas durante a sua participação serão analisadas em conjunto com as informações dos outros voluntários. Caso você aceite participar da pesquisa e assine este termo, você estará ciente que todos os seus dados pessoais e aferiçoes coletadas pela camera serão processados de acordo com a Lei 13.709/18 (LGPD), e serão utilizados apenas para os propósitos desta pesquisa e não serão compartilhados.
                     </Text>
                 </CardBody>
-            </Card>
-            
+                <CardFooter cursor={'pointer'} onClick={() => {setShowTermoConsentimento(false); start()}}>
+                    <Heading size='xs'>
+                        <Checkbox onChange={() => setShowTermoConsentimento(false)}></Checkbox> Sim, aceito participar.
+                    </Heading>
+                </CardFooter>
+            </Card>}
+            {!showTermoConsentimento  && <VStack alignItems={"left"} textAlign="left">
                 <Box className='box-pergunta'>
                     <Text>Email:</Text>
-                    <input size='sm' type="email" value={email} onChange={(event) => setEmail(event.target.value)}/>
+                    <Input size='xs' className='input-perguntas' type="email" value={email} onChange={(event) => setEmail(event.target.value)}/>
                 </Box>
         
                 <Box className='box-pergunta'>
                     <Text>Nascimento:</Text>
-                    <Select placeholder='Selecione' w={"10em"} h={"2em"} display={"flex"} value={anonascto} onChange={(event) => setAnoNascto(event.target.options[event.target.selectedIndex].value)}>
+                    <Select size='xs' className='chakra-select' placeholder='Selecione' value={anonascto} onChange={(event) => setAnoNascto(event.target.options[event.target.selectedIndex].value)}>
                     <option value='1900'>1900</option>
                     <option value='1901'>1901</option>
                     <option value='1902'>1902</option>
@@ -186,14 +197,14 @@ Todas as informações coletadas durante a sua participação serão analis
 
                 <Box className='box-pergunta'>
                     <Text>Gênero:</Text>
-                <Select placeholder='Selecione'  w={"10em"} h={"2em"} display={"flex"} value={genero} onChange={(event) => setGenero(event.target.options[event.target.selectedIndex].value)}>
+                <Select size='xs' placeholder='Selecione' display={"flex"} value={genero} onChange={(event) => setGenero(event.target.options[event.target.selectedIndex].value)}>
                 <option value='masculino'>Masculino</option>
                 <option value='feminino'>Feminino</option>
                 <option value='naodizer'>Prefiro não dizer</option>
                 <option value='lgbt'>LGBTQQICAAPF2K+</option></Select></Box>
                 <Box className='box-pergunta'>
                     <Text>Escolaridade:</Text>
-                <Select placeholder='Selecione' w={"10em"} h={"2em"} display={"flex"} onChange={(event) => setEscolaridade(event.target.options[event.target.selectedIndex].value)}>
+                <Select size='xs' placeholder='Selecione' display={"flex"} onChange={(event) => setEscolaridade(event.target.options[event.target.selectedIndex].value)}>
                 <option value='fundamental'>Ensino Fundamental</option>
                 <option value='medio'>Ensino Médio</option>
                 <option value='superior-incompleto'>Superior Incompleto</option>
@@ -202,7 +213,7 @@ Todas as informações coletadas durante a sua participação serão analis
 
                 <Box className='box-pergunta'>
                     <Text>Renda Familiar:</Text>
-                <Select placeholder='Selecione' w={"10em"} h={"2em"} display={"flex"} onChange={(event) => setRendaFamiliar(event.target.options[event.target.selectedIndex].value)}>
+                <Select size='xs' placeholder='Selecione' display={"flex"} onChange={(event) => setRendaFamiliar(event.target.options[event.target.selectedIndex].value)}>
                 <option value='1salario' >1 salário mínimo</option>
                 <option value='2salarios'>2 salários mínimos</option>
                 <option value='3salarios'>3 salários mínimos</option>
@@ -211,7 +222,7 @@ Todas as informações coletadas durante a sua participação serão analis
 
                 <Box className='box-pergunta'>
                     <Text>Naturalidade:</Text>
-                <Select placeholder='Selecione' w={"10em"} h={"2em"} display={"flex"} onChange={(event) => setNaturalidade(event.target.options[event.target.selectedIndex].value)}>
+                <Select size='xs' placeholder='Selecione' display={"flex"} onChange={(event) => setNaturalidade(event.target.options[event.target.selectedIndex].value)}>
                     <option value="AC">Acre</option>
                     <option value="AL">Alagoas</option>
                     <option value="AP">Amapá</option>
@@ -240,9 +251,13 @@ Todas as informações coletadas durante a sua participação serão analis
                     <option value="TO">Tocantins</option>
                     <option value="DF">Distrito Federal</option>
                 </Select></Box>
+                <Box className='btn-continuar'>
+                    <Button onClick={(event) => {save(event.target)}} id="continuar">continuar</Button>
+                    <Button id="aguarde" display={"none"}>Aguarde...</Button>
+                </Box>
             </VStack>
-            <button onClick={() => start()}>gravar</button>
-    <button onClick={() => save()}>continuar</button>
+            }
+            
         </>
     );
 }

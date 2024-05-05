@@ -8,15 +8,44 @@
   font-weight: bold;
   font-size:0.8em !important;
   border-radius: 0.5cap;
-  width: 80%
+  width: 100%
 }
 
-.chakra-select {
-  border:1px solid #999 !important;
-  font-size:0.7em !important;
+.chakra-select,
+.chakra-textarea
+ {
+  border-color: #999 !important;
+  border-radius: 0.5cap;
 }
 
 .chakra-stepper {
   padding-top: 1em !important;
   margin-bottom: 1em
+}
+
+.btn-continuar {
+  align-self: center;
+  padding: 0.3em;
+  font-size: x-small !important;
+  color: rgb(19, 72, 121);
+}
+
+.input-perguntas {
+  border: 1px solid #999 !important;
+  border-radius: 0.5cap !important;
+  width: 35em !important;
+  font-size:0.7em !important;
+}
+.chakra-checkbox__label,
+.chakra-radio__label
+{
+  font-size: 1em !important;
+}
+
+.chakra-checkbox__control,
+.chakra-radio__control
+ {
+  border: 1px solid #999 !important;
+  border-radius: 0.3cap !important;
+  display:block;
 }

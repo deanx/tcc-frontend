@@ -18,18 +18,18 @@ function createRecorderWebcam (stream, mimeType)  {
     saveFile(recordedChunks, mediaRecorder.videodata);
     recordedChunks = [];
   };
-  mediaRecorder.start(5000); // For every 5000ms the stream data will be stored in a separate chunk.
+  mediaRecorder.start(2000); // For every 2000ms the stream data will be stored in a separate chunk.
   return mediaRecorder;
 }
 
 function saveFile(recordedChunks, videodata){
   
   const blob = new Blob(recordedChunks, {
-    type: 'video/mp4'
+    type: 'video/webm'
   });
   
   const formdata = new FormData();
-formdata.append("blobs", blob, videodata.email + "-" + videodata.step + ".mp4");
+formdata.append("blobs", blob, videodata.email + "-" + videodata.step + ".webm");
 
 const requestOptions = {
   method: "POST",
