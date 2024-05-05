@@ -7,7 +7,7 @@ import {
     Grid, GridItem,
     Box,
     Select, Input,
-    HStack, Center, Text
+    HStack, VStack, Center, Text
 
   } from '@chakra-ui/react';
 
@@ -16,7 +16,7 @@ function PerguntasIniciaisI(props) {
         window.email = email;
         
         //if([email, anonascto, genero, rendaFamiliar, escolaridade, naturalidade].some(el => el == "")) return alert("Preencha todos os campos");
-        return props.setActiveStep(2);
+        props.setActiveStep(2);
         let data = JSON.stringify({
             "id": 1,
             "email": email,
@@ -70,19 +70,17 @@ function PerguntasIniciaisI(props) {
     gap='1'
     color='blackAlpha.700'
     fontWeight='bold'
-    fontSize="0.7em"
+    fontSize="1em"
     >
-    <GridItem pl='1' bg='#E5E5E5' area={'p1'}>
-        
-            <HStack verticalAlign={"center"}>
-                <Box w={"40%"}>Email:</Box>
-                <Box><input type="email" w={"20%"} value={email} onChange={(event) => setEmail(event.target.value)}/></Box>
-            </HStack>
+    <GridItem pl='2' pt='0em' bg='#E5E5E5' area={'p1'}>
+        <VStack alignContent={"left"} alignItems={"left"}>
+                <Box>Email:</Box>
+                <Box><input size='sm' verticalAlign='center' type="email" value={email} onChange={(event) => setEmail(event.target.value)}/></Box>
+        </VStack>
         
     </GridItem>
-    <GridItem pl='1' bg='#E5E5E5' area={'p2'}>
-    
-            <HStack>
+    <GridItem pl='2' pt='0em' bg='#E5E5E5' area={'p2'}>
+            <VStack>
                 <Box>Nascimento:</Box>
                 <Box><Select placeholder='Selecione' w={"10em"} h={"2em"} display={"flex"} value={anonascto} onChange={(event) => setAnoNascto(event.target.options[event.target.selectedIndex].value)}>
                     <option value='1900'>1900</option>
@@ -187,53 +185,46 @@ function PerguntasIniciaisI(props) {
                     <option value='1999'>1999</option>
                     <option value='2000'>2000</option>
                 </Select></Box>
-            </HStack>
+            </VStack>
     </GridItem>
-    <GridItem pl='2' bg='#E5E5E5' area={'p3'}>
-        <Center>
-            <HStack>
+    <GridItem pl='2' pt='0em' bg='#E5E5E5' area={'p3'} >
+            <VStack>
                 <Box>Gênero: </Box>
-                <Box><Select placeholder='Selecione' w={300} display={"flex"} value={genero} onChange={(event) => setGenero(event.target.options[event.target.selectedIndex].value)}>
+                <Box><Select placeholder='Selecione'  w={"10em"} h={"2em"} display={"flex"} value={genero} onChange={(event) => setGenero(event.target.options[event.target.selectedIndex].value)}>
                 <option value='masculino'>Masculino</option>
                 <option value='feminino'>Feminino</option>
                 <option value='naodizer'>Prefiro não dizer</option>
                 <option value='lgbt'>LGBTQQICAAPF2K+</option></Select></Box>
-            </HStack>
-        </Center>
+            </VStack>
     </GridItem>
-    <GridItem pl='2' bg='#E5E5E5' area={'p4'}>
-    <Center>
-            <HStack>
+    <GridItem pl='2' pt='0em' bg='#E5E5E5' area={'p4'}>
+            <VStack>
                 <Box>Escolaridade: </Box>
-                <Box><Select placeholder='Selecione' w={300} display={"flex"} onChange={(event) => setEscolaridade(event.target.options[event.target.selectedIndex].value)}>
+                <Box><Select placeholder='Selecione' w={"10em"} h={"2em"} display={"flex"} onChange={(event) => setEscolaridade(event.target.options[event.target.selectedIndex].value)}>
                 <option value='fundamental'>Ensino Fundamental</option>
                 <option value='medio'>Ensino Médio</option>
                 <option value='superior-incompleto'>Superior Incompleto</option>
                 <option value='superior-completo'>Superior Completo</option>
                 <option value='pos'>Pós graduação</option></Select></Box>
-            </HStack>
-        </Center>
+            </VStack>
     </GridItem>
 
-    <GridItem pl='2' bg='#E5E5E5' area={'p5'}>
-    <Center>
-            <HStack>
+    <GridItem pl='2' pt='0em'  bg='#E5E5E5' area={'p5'}>
+            <VStack>
                 <Box>Renda Familiar:</Box>
-                <Box><Select placeholder='Selecione' w={300} display={"flex"} onChange={(event) => setRendaFamiliar(event.target.options[event.target.selectedIndex].value)}>
+                <Box><Select placeholder='Selecione' w={"10em"} h={"2em"} display={"flex"} onChange={(event) => setRendaFamiliar(event.target.options[event.target.selectedIndex].value)}>
                 <option value='1salario' >1 salário mínimo</option>
                 <option value='2salarios'>2 salários mínimos</option>
                 <option value='3salarios'>3 salários mínimos</option>
                 <option value='4salarios'>4 salários mínimos</option>
                 <option value='mais5salarios'>mais de 5 salários mínimos</option></Select></Box>
-            </HStack>
-        </Center>
+            </VStack>
     </GridItem>
 
-    <GridItem pl='2' bg='#E5E5E5' area={'p6'}>
-    <Center>
-            <HStack>
+    <GridItem pl='2' pt='0em' bg='#E5E5E5' area={'p6'} >
+            <VStack>
                 <Box>Naturalidade: </Box>
-                <Box><Select placeholder='Selecione' w={300} display={"flex"} onChange={(event) => setNaturalidade(event.target.options[event.target.selectedIndex].value)}>
+                <Box><Select placeholder='Selecione' w={"10em"} h={"2em"} display={"flex"} onChange={(event) => setNaturalidade(event.target.options[event.target.selectedIndex].value)}>
                     <option value="AC">Acre</option>
                     <option value="AL">Alagoas</option>
                     <option value="AP">Amapá</option>
@@ -261,10 +252,8 @@ function PerguntasIniciaisI(props) {
                     <option value="SE">Sergipe</option>
                     <option value="TO">Tocantins</option>
                     <option value="DF">Distrito Federal</option>
-                    
                 </Select></Box>
-            </HStack>
-        </Center>
+            </VStack>
     </GridItem>
     </Grid>
     <button onClick={() => start()}>gravar</button>
