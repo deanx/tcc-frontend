@@ -46,7 +46,7 @@ function App() {
         <Container minW='100%'>
         <Stepper index={activeStep} size='sm' orientation='vertical'>
       {steps.map((step, index) => (
-        <Step key={index}>
+        <Step key={index} className="steps">
           <StepIndicator>
             <StepStatus
               complete={<StepIcon />}

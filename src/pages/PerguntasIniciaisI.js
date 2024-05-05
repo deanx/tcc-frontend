@@ -4,11 +4,9 @@ import { API_URL } from '../constants';
 import axios from 'axios';
 
 import {
-    Grid, GridItem,
     Box,
-    Select, Input,
-    HStack, VStack, Center, Text
-
+    Select,
+     VStack, Text, Card, CardBody, CardHeader, CardFooter, Heading
   } from '@chakra-ui/react';
 
 function PerguntasIniciaisI(props) {
@@ -60,29 +58,29 @@ function PerguntasIniciaisI(props) {
     const [naturalidade, setNaturalidade] = React.useState("")
     return (
         <>
-            <Grid
-    templateAreas={`"p1 p2"
-                    "p3 p4"
-                    "p5 p6"`}
-    gridTemplateRows={'33% 33% 33%'}
-    gridTemplateColumns={'50% 50%'}
-    h='200px'
-    gap='1'
-    color='blackAlpha.700'
-    fontWeight='bold'
-    fontSize="1em"
-    >
-    <GridItem pl='2' pt='0em' bg='#E5E5E5' area={'p1'}>
-        <VStack alignContent={"left"} alignItems={"left"}>
-                <Box>Email:</Box>
-                <Box><input size='sm' verticalAlign='center' type="email" value={email} onChange={(event) => setEmail(event.target.value)}/></Box>
-        </VStack>
+        <VStack alignItems={"left"} textAlign="left">
+            
+            <Card>
+                <CardHeader>
+                    <Heading size='sm'>TERMO DE CONSENTIMENTO LIVRE E ESCLARECIDO</Heading>
+                </CardHeader>
+                <CardBody>
+                    <Text pt='2' fontSize='sm'>
+Você está convidado (a) a participar de uma pesquisa academica sobre redes sociais que faz parte de um projeto de finalizac’ão de curso de MBA em Neurociencia e Marketing pela PUC Rio Grande do Sul, em que se inclue o uso de analise neurocientifica que faz aferiçoes durante a pesquisa, portanto é necessário que habilite sua camera. 
+Importante
+Todas as informações coletadas durante a sua participação serão analisadas em conjunto com as informações dos outros voluntários. Caso você aceite participar da pesquisa e assine este termo, você estará ciente que todos os seus dados pessoais e aferiçoes coletadas pela camera serão processados de acordo com a Lei 13.709/18 (LGPD), e serão utilizados apenas para os propósitos desta pesquisa e não serão compartilhados. 
+                    </Text>
+                </CardBody>
+            </Card>
+            
+                <Box className='box-pergunta'>
+                    <Text>Email:</Text>
+                    <input size='sm' type="email" value={email} onChange={(event) => setEmail(event.target.value)}/>
+                </Box>
         
-    </GridItem>
-    <GridItem pl='2' pt='0em' bg='#E5E5E5' area={'p2'}>
-            <VStack>
-                <Box>Nascimento:</Box>
-                <Box><Select placeholder='Selecione' w={"10em"} h={"2em"} display={"flex"} value={anonascto} onChange={(event) => setAnoNascto(event.target.options[event.target.selectedIndex].value)}>
+                <Box className='box-pergunta'>
+                    <Text>Nascimento:</Text>
+                    <Select placeholder='Selecione' w={"10em"} h={"2em"} display={"flex"} value={anonascto} onChange={(event) => setAnoNascto(event.target.options[event.target.selectedIndex].value)}>
                     <option value='1900'>1900</option>
                     <option value='1901'>1901</option>
                     <option value='1902'>1902</option>
@@ -185,46 +183,35 @@ function PerguntasIniciaisI(props) {
                     <option value='1999'>1999</option>
                     <option value='2000'>2000</option>
                 </Select></Box>
-            </VStack>
-    </GridItem>
-    <GridItem pl='2' pt='0em' bg='#E5E5E5' area={'p3'} >
-            <VStack>
-                <Box>Gênero: </Box>
-                <Box><Select placeholder='Selecione'  w={"10em"} h={"2em"} display={"flex"} value={genero} onChange={(event) => setGenero(event.target.options[event.target.selectedIndex].value)}>
+
+                <Box className='box-pergunta'>
+                    <Text>Gênero:</Text>
+                <Select placeholder='Selecione'  w={"10em"} h={"2em"} display={"flex"} value={genero} onChange={(event) => setGenero(event.target.options[event.target.selectedIndex].value)}>
                 <option value='masculino'>Masculino</option>
                 <option value='feminino'>Feminino</option>
                 <option value='naodizer'>Prefiro não dizer</option>
                 <option value='lgbt'>LGBTQQICAAPF2K+</option></Select></Box>
-            </VStack>
-    </GridItem>
-    <GridItem pl='2' pt='0em' bg='#E5E5E5' area={'p4'}>
-            <VStack>
-                <Box>Escolaridade: </Box>
-                <Box><Select placeholder='Selecione' w={"10em"} h={"2em"} display={"flex"} onChange={(event) => setEscolaridade(event.target.options[event.target.selectedIndex].value)}>
+                <Box className='box-pergunta'>
+                    <Text>Escolaridade:</Text>
+                <Select placeholder='Selecione' w={"10em"} h={"2em"} display={"flex"} onChange={(event) => setEscolaridade(event.target.options[event.target.selectedIndex].value)}>
                 <option value='fundamental'>Ensino Fundamental</option>
                 <option value='medio'>Ensino Médio</option>
                 <option value='superior-incompleto'>Superior Incompleto</option>
                 <option value='superior-completo'>Superior Completo</option>
                 <option value='pos'>Pós graduação</option></Select></Box>
-            </VStack>
-    </GridItem>
 
-    <GridItem pl='2' pt='0em'  bg='#E5E5E5' area={'p5'}>
-            <VStack>
-                <Box>Renda Familiar:</Box>
-                <Box><Select placeholder='Selecione' w={"10em"} h={"2em"} display={"flex"} onChange={(event) => setRendaFamiliar(event.target.options[event.target.selectedIndex].value)}>
+                <Box className='box-pergunta'>
+                    <Text>Renda Familiar:</Text>
+                <Select placeholder='Selecione' w={"10em"} h={"2em"} display={"flex"} onChange={(event) => setRendaFamiliar(event.target.options[event.target.selectedIndex].value)}>
                 <option value='1salario' >1 salário mínimo</option>
                 <option value='2salarios'>2 salários mínimos</option>
                 <option value='3salarios'>3 salários mínimos</option>
                 <option value='4salarios'>4 salários mínimos</option>
                 <option value='mais5salarios'>mais de 5 salários mínimos</option></Select></Box>
-            </VStack>
-    </GridItem>
 
-    <GridItem pl='2' pt='0em' bg='#E5E5E5' area={'p6'} >
-            <VStack>
-                <Box>Naturalidade: </Box>
-                <Box><Select placeholder='Selecione' w={"10em"} h={"2em"} display={"flex"} onChange={(event) => setNaturalidade(event.target.options[event.target.selectedIndex].value)}>
+                <Box className='box-pergunta'>
+                    <Text>Naturalidade:</Text>
+                <Select placeholder='Selecione' w={"10em"} h={"2em"} display={"flex"} onChange={(event) => setNaturalidade(event.target.options[event.target.selectedIndex].value)}>
                     <option value="AC">Acre</option>
                     <option value="AL">Alagoas</option>
                     <option value="AP">Amapá</option>
@@ -254,9 +241,7 @@ function PerguntasIniciaisI(props) {
                     <option value="DF">Distrito Federal</option>
                 </Select></Box>
             </VStack>
-    </GridItem>
-    </Grid>
-    <button onClick={() => start()}>gravar</button>
+            <button onClick={() => start()}>gravar</button>
     <button onClick={() => save()}>continuar</button>
         </>
     );

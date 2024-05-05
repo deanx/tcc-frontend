@@ -2,3 +2,21 @@
 .chakra-checkbox__label {
   font-weight: lighter;
 }
+.box-pergunta {
+  background-color: #E5E5E5;
+  padding:1em;
+  font-weight: bold;
+  font-size:0.8em !important;
+  border-radius: 0.5cap;
+  width: 80%
+}
+
+.chakra-select {
+  border:1px solid #999 !important;
+  font-size:0.7em !important;
+}
+
+.chakra-stepper {
+  padding-top: 1em !important;
+  margin-bottom: 1em
+}
