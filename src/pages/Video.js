@@ -9,7 +9,7 @@ function Video(props) {
     setTimeout(() => {
         document.getElementById("aguarde").style.display="none";
         document.getElementById("continuar").style.display="block"
-    },2000);
+    },145000);
     return (
         <>
         <Text padding={'1em'}>Assista ao vídeo abaixo e depois clique no botão abaixo do vídeo:</Text>
