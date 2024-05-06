@@ -9,7 +9,7 @@ function Agradecimento(props) {
     const [aguarde, setAguarde] = React.useState(true);
     setTimeout(() => {
         setAguarde(false);
-    }, 5000)
+    }, 15000)
     return (
         <>
         <Card>
