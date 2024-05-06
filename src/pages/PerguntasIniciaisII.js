@@ -113,7 +113,7 @@ function PerguntasIniciaisII(props) {
                 </Box>
           
                 <Box className='box-pergunta'>
-                    <Text>Quais redes sociais você MAIS usa?</Text>
+                    <Text>Qual a rede sociais você MAIS usa?</Text>
                 <RadioGroup onChange={setRedesMais} value={redesMais}>
                 <VStack spacing={5} alignItems={"left"}>
                     

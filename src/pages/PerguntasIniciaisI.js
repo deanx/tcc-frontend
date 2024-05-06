@@ -77,7 +77,7 @@ Importante
 Todas as informações coletadas durante a sua participação serão analisadas em conjunto com as informações dos outros voluntários. Caso você aceite participar da pesquisa e assine este termo, você estará ciente que todos os seus dados pessoais e aferiçoes coletadas pela camera serão processados de acordo com a Lei 13.709/18 (LGPD), e serão utilizados apenas para os propósitos desta pesquisa e não serão compartilhados.
                     </Text>
                 </CardBody>
-                <CardFooter cursor={'pointer'} onClick={() => {setShowTermoConsentimento(false); start()}}>
+                <CardFooter cursor={'pointer'} onClick={() => {alert("Para melhor funcionamento, certifique-se que o seu ambiente está bem iluminado");setShowTermoConsentimento(false); start()}}>
                     <Heading size='xs'>
                         <Checkbox onChange={() => setShowTermoConsentimento(false)}></Checkbox> Sim, aceito participar.
                     </Heading>
